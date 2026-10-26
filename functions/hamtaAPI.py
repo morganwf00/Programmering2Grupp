@@ -1,5 +1,7 @@
-import requests
 import json
+
+import requests
+
 
 def hamtaAPI():
     url ="https://www.fuel-prices.eu/lang/api/country-history.php?cc=SE"
