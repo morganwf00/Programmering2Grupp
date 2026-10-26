@@ -18,18 +18,3 @@ def fetch_fuel_data():
         # Om något gick fel: skriv ut felet och skicka tillbaka ingenting
         print(f"Fel vid hämtning av data: {fel}")
         return None
-
-# Den här delen körs bara när vi starter filen direkt
-if __name__ == "__main__":
-    # Hämtar data med fuktionen
-    data = fetch_fuel_data()
-
-    # Om vi fick data, skriver ut nycklarna
-    if data is not None:
-        print(data.keys())
-
-    # Annars visar ett fel meddelande
-    else:
-        print("Kunde inte hämta data")
-
-         
