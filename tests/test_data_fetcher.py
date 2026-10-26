@@ -1,4 +1,4 @@
-from data_fetcher import fetch_fuel_data
+from functions.data_fetcher import fetch_fuel_data
 
 #test funktioner fär att checka API fetch funkar bra 
 def test_hamtaAPI():
@@ -17,3 +17,4 @@ def test_hamtaAPI3():
     diesel = data["diesel"]
 
     assert diesel[0] == 1.943
+
