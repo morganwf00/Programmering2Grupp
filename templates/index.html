@@ -1,14 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gruppgiften</title>
-</head>
+{% extends "base.html" %}
 
-<body>
+{% block content %}
+<h1>Bränslepriser i Sverige</h1>
 
-</body>
+<p>Välkommen till vår dashboard för bensin och diesel priser</p>
 
-</html>
+<p>Här kan du jämföra hur priserna har förändrats över tid.</p>
+
+<a href="/jamforelse_bensin_diesel">
+    Visa jämförelse
+</a>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Bensin och Diesel priser</h1>
+
+<h2>Bensin</h2>
+<table>
+    {% for pris in bensin %}
+    <tr>
+        <td>{{ "%.2f"|format(pris) }} kr/liter</td>
+    </tr>
+    {% else %}
+    <tr><td>Ingen data</td></tr>
+    {% endfor %}
+</table>
+
+<h2>Diesel</h2>
+<table>
+    {% for pris in diesel %}
+    <tr>
+        <td>{{ "%.2f"|format(pris) }} kr/liter</td>
+    </tr>
+    {% else %}
+    <tr><td>Ingen data</td></tr>
+    {% endfor %}
+</table>
+
+{% endblock %}
