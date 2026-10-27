@@ -25,4 +25,19 @@
     {% endfor %}
 </table>
 
+<h2>Analys av bränslepriser</h2>
+<table>
+    <thread>
+        <tr>
+            <th>Datum</th>
+            <th>Bensin (SEK/liter)</th>
+            <th>Diesel (SEK/liter)</th>
+            <th>Prisskillnad (SEK/liter)</th>
+        </tr>
+    </thread>
+</table>
+
+<h2>Prisutveckling</h2>
+{{ diagram1 | safe }}
+
 {% endblock %}
