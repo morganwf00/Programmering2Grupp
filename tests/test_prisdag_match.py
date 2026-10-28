@@ -1,4 +1,4 @@
-from functions.match_dag_pris_e95 import matchDagOchPrisE95, matchDagOchPrisDiesel
+from functions.match_dag_pris import matchDagOchPrisE95, matchDagOchPrisDiesel
 
 #testar om pris och dag för diesel och e95 matchas, 
 #det första index av listan från funktionen ska vara en dictionary

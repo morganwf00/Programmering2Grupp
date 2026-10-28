@@ -3,6 +3,8 @@ import pandas as pd
 import plotly.express as px
 from flask import Flask, render_template
 from functions.data_fetcher import fetch_fuel_data
+from functions.match_dag_pris import matchDagOchPrisDiesel, matchDagOchPrisE95
+from functions.min_max_pris import *
 
 
 # Hämtar funktioner som räkner priset för diesel och bensin, samt prisskillnaden.
@@ -25,7 +27,13 @@ def index():
 
 @app.route("/minmax")
 def minMaxPris():
-    return render_template("minMax.html")
+    data_diesel = matchDagOchPrisDiesel()
+    data_e95 = matchDagOchPrisE95()
+    max_pris_diesel = hitta_max_diesel(data_diesel)
+    min_pris_diesel = hitta_min_diesel(data_diesel)
+    max_pris_e95 =hitta_max_e95(data_e95)
+    min_pris_e95 =hitta_min_e95(data_e95)
+    return render_template("minMax.html", min_diesel=min_pris_diesel,min_e95=min_pris_e95, max_diesel=max_pris_diesel, max_e95=max_pris_e95)
 
 # Sida som jämför bensin och dieselpriser
 @app.route("/jamforelse_bensin_diesel", methods=["GET"])
