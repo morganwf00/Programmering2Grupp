@@ -1,40 +1,31 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Bensin och Diesel priser</h1>
+<h1>Jämförelse av bensin och diesel priser</h1>
 
-<h2>Bensin</h2>
-<table>
-    {% for pris in bensin %}
-    <tr>
-        <td>{{ "%.2f"|format(pris) }} kr/liter</td>
-    </tr>
-    {% else %}
-    <tr><td>Ingen data</td></tr>
-    {% endfor %}
-</table>
+<h2>Prisutveckling</h2>
+{{ diagram1 | safe }}
 
-<h2>Diesel</h2>
+<h2>Priser över tid</h2>
 <table>
-    {% for pris in diesel %}
-    <tr>
-        <td>{{ "%.2f"|format(pris) }} kr/liter</td>
-    </tr>
-    {% else %}
-    <tr><td>Ingen data</td></tr>
-    {% endfor %}
-</table>
-
-<h2>Analys av bränslepriser</h2>
-<table>
-    <thread>
+    <thead>
         <tr>
             <th>Datum</th>
-            <th>Bensin (SEK/liter)</th>
-            <th>Diesel (SEK/liter)</th>
-            <th>Prisskillnad (SEK/liter)</th>
+            <th>Bensin (kr/liter)</th>
+            <th>Diesel (kr/liter)</th>
+            <th>Prisskillnad (kr/liter)</th>
         </tr>
-    </thread>
+    </thead>
+    <tbody>
+        {% for i in range(analys_datum|length) %}
+        <tr>
+            <td>{{ analys_datum[i] }}</td>
+            <td>{{ "%.2f"|format(analys_bensin[i]) }}</td>
+            <td>{{ "%.2f"|format(analys_diesel[i]) }}</td>
+            <td>{{ "%.2f"|format(analys_skillnad[i]) }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
 </table>
 
 <h2>Prisutveckling</h2>
