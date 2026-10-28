@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Jämförelse av bensin och diesel priser</h1>
+
+<h2>Prisutveckling</h2>
+{{ diagram1 | safe }}
+
+<h2>Priser över tid</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Datum</th>
+            <th>Bensin (kr/liter)</th>
+            <th>Diesel (kr/liter)</th>
+            <th>Prisskillnad (kr/liter)</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for i in range(analys_datum|length) %}
+        <tr>
+            <td>{{ analys_datum[i] }}</td>
+            <td>{{ "%.2f"|format(analys_bensin[i]) }}</td>
+            <td>{{ "%.2f"|format(analys_diesel[i]) }}</td>
+            <td>{{ "%.2f"|format(analys_skillnad[i]) }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h2>Prisutveckling</h2>
+{{ diagram1 | safe }}
+
+{% endblock %}
