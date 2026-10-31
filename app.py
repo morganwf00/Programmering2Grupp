@@ -5,7 +5,7 @@ from flask import Flask, render_template
 from functions.data_fetcher import fetch_fuel_data
 from functions.match_dag_pris import matchDagOchPrisDiesel, matchDagOchPrisE95
 from functions.min_max_pris import *
-
+from functions. graf_minmax import visa_graf_minmax
 
 # Hämtar funktioner som räkner priset för diesel och bensin, samt prisskillnaden.
 from functions.analys import analys_pris_skillnaden
@@ -33,7 +33,8 @@ def minMaxPris():
     min_pris_diesel = hitta_min_diesel(data_diesel)
     max_pris_e95 =hitta_max_e95(data_e95)
     min_pris_e95 =hitta_min_e95(data_e95)
-    return render_template("minMax.html", min_diesel=min_pris_diesel,min_e95=min_pris_e95, max_diesel=max_pris_diesel, max_e95=max_pris_e95)
+    graf = visa_graf_minmax(min_pris_e95,max_pris_e95,min_pris_diesel,max_pris_diesel)
+    return render_template("minMax.html", graf=graf, min_diesel=min_pris_diesel,min_e95=min_pris_e95, max_diesel=max_pris_diesel, max_e95=max_pris_e95)
 
 # Sida som jämför bensin och dieselpriser
 @app.route("/jamforelse_bensin_diesel", methods=["GET"])
