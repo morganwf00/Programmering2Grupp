@@ -30,7 +30,7 @@ def minMaxPris():
 # Sidan som gämför denna månadens veckopris emot förra
 @app.route("/priceDifferance")
 def priceDiff():
-    data = fetch_fuel_data
+    data = fetch_fuel_data()
 
     # Visar fel om data inte kunde hämtas
     if data is None:
@@ -40,13 +40,13 @@ def priceDiff():
         ), 503
 
     # API json in panda format
-    df = pd.DataFrame(data)
+    df = pd.DataFrame({"time": data["labels"], "price": data["e95"]})
 
     # Plotly graph container for values and such
     fig = px.line(
         df,
-        x="lables",
-        y="e95",
+        x="time",
+        y="price",
         title="I like poop",
     )
     # making the graph able to render in existing html file and removing plotly sorcecode
