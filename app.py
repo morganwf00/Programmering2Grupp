@@ -42,8 +42,17 @@ def priceDiff():
     # API json in panda format
     df = pd.DataFrame(data)
 
-    # Plotly graph
-    fig = px.line(df, x="lables")
+    # Plotly graph container for values and such
+    fig = px.line(
+        df,
+        x="lables",
+        y="e95",
+        title="I like poop",
+    )
+    # making the graph able to render in existing html file and removing plotly sorcecode
+    graph = fig.to_html(full_html=False, include_plotlyjs="cdn")
+
+    return render_template("priceDiff.html", graph=graph)
 
 
 # Sida som jämför bensin och dieselpriser
