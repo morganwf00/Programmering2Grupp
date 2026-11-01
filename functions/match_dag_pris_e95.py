@@ -9,22 +9,18 @@ def matchDagOchPrisE95():
     priserE95 = data["e95"]
 
     for dag, pris in zip(dagar, priserE95):
-        prisPerDage95.append({
-            "dag": dag,
-            "pris": pris
-        })
+        prisPerDage95.append({"dag": dag, "pris": pris})
     return prisPerDage95
+
+
 def matchDagOchPrisDiesel():
     prisPerDagDiesel = []
-    
+
     data = fetch_fuel_data()
 
     dagar = data["labels"]
     priserDiesel = data["diesel"]
-    
+
     for dag, pris in zip(dagar, priserDiesel):
-        prisPerDagDiesel.append({
-            "dag": dag,
-            "pris": pris
-        })
-    return prisPerDagDiesel 
+        prisPerDagDiesel.append({"dag": dag, "pris": pris})
+    return prisPerDagDiesel

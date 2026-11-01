@@ -27,6 +27,30 @@ def index():
 def minMaxPris():
     return render_template("minMax.html")
 
+
+# Sidan som gämför denna månadens veckopris emot förra
+@app.route("/priceDifferance")
+def priceDiff():
+    data = fetch_fuel_data
+
+    # Visar fel om data inte kunde hämtas
+    if data is None:
+        return render_template(
+            "fel.html",
+            fel="Vi kunde inte hämta bränslepriser just nu. Vänligen försöka igen senare.",
+        ), 503
+        
+    # API json in panda format
+    df = pd.DataFrame(data)
+    
+    #Plotly graph
+    fig = px.line(
+        df,
+        x='lables'
+    )
+    
+
+
 # Sida som jämför bensin och dieselpriser
 @app.route("/jamforelse_bensin_diesel", methods=["GET"])
 def jamforelse_bensin_diesel():
