@@ -2,17 +2,15 @@
 import pandas as pd
 import plotly.express as px
 from flask import Flask, render_template
-from functions.data_fetcher import fetch_fuel_data
-
 
 # Hämtar funktioner som räkner priset för diesel och bensin, samt prisskillnaden.
 from functions.analys import analys_pris_skillnaden
 
 # Hämtar funktionen som räknar om euro till kronor
 from functions.currency_converter import convert_to_sek
+from functions.data_fetcher import fetch_fuel_data
 
 # Hämtar funktionen som hämtar priset från API
-from functions.data_fetcher import fetch_fuel_data
 
 # Skapar Flask-appen
 app = Flask(__name__)
@@ -22,6 +20,7 @@ app = Flask(__name__)
 @app.route("/", methods=["GET"])
 def index():
     return render_template("index.html")
+
 
 @app.route("/minmax")
 def minMaxPris():
@@ -39,16 +38,12 @@ def priceDiff():
             "fel.html",
             fel="Vi kunde inte hämta bränslepriser just nu. Vänligen försöka igen senare.",
         ), 503
-        
+
     # API json in panda format
     df = pd.DataFrame(data)
-    
-    #Plotly graph
-    fig = px.line(
-        df,
-        x='lables'
-    )
-    
+
+    # Plotly graph
+    fig = px.line(df, x="lables")
 
 
 # Sida som jämför bensin och dieselpriser
