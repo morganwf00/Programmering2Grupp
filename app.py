@@ -23,6 +23,7 @@ def index():
     return render_template("index.html")
 
 
+
 @app.route("/minmax")
 def minMaxPris():
     return render_template("minMax.html")
