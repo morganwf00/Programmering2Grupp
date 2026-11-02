@@ -10,7 +10,8 @@ from functions.analys import analys_pris_skillnaden
 from functions.currency_converter import convert_to_sek
 from functions.data_fetcher import fetch_fuel_data
 
-# Hämtar funktionen som hämtar priset från API
+# Hämtar funktionen som gämför de senaste två månader
+from functions.e95Differance import dfDiff
 
 # Skapar Flask-appen
 app = Flask(__name__)
@@ -31,28 +32,15 @@ def minMaxPris():
 @app.route("/priceDifferance")
 def priceDiff():
     data = fetch_fuel_data()
-
-    # Visar fel om data inte kunde hämtas
+    
     if data is None:
         return render_template(
             "fel.html",
-            fel="Vi kunde inte hämta bränslepriser just nu. Vänligen försöka igen senare.",
+            fel="Vi kunde inte hämta bränslepriser just nu. Vänligen försök igen senare.",
         ), 503
-
-    # API json in panda format
-    df = pd.DataFrame({"time": data["labels"], "price": data["e95"]})
-
-    # Plotly graph container for values and such
-    fig = px.line(
-        df,
-        x="time",
-        y="price",
-        title="I like poop",
-    )
-    # making the graph able to render in existing html file and removing plotly sorcecode
-    graph = fig.to_html(full_html=False, include_plotlyjs="cdn")
-
-    return render_template("priceDiff.html", graph=graph)
+    
+    fig = dfDiff(data)
+    return render_template("priceDiff.html", graph=fig.to_html(full_html=False))
 
 
 # Sida som jämför bensin och dieselpriser
