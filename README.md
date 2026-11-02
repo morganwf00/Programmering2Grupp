@@ -122,4 +122,5 @@ Mer information:
 
 Observera att olika datakällor kan ha separata licensvillkor. Applikationen är ett självständigt studentprojekt och är inte officiellt kopplad till eller godkänd av fuel-prices.eu eller Europeiska kommissionen.
 
+##Tack för du använder vår app!
 ![<3](https://w7.pngwing.com/pngs/150/440/png-transparent-meme-culture-idea-saying-meme-culture-text-presentation-thumbnail.png)
