@@ -2,7 +2,6 @@
 import pandas as pd
 import plotly.express as px
 from flask import Flask, render_template
-from functions.graf_minmax import visa_graf_minmax
 
 # Hämtar funktioner som räkner priset för diesel och bensin, samt prisskillnaden.
 from functions.analys import analys_pris_skillnaden
@@ -10,6 +9,7 @@ from functions.analys import analys_pris_skillnaden
 # Hämtar funktionen som räknar om euro till kronor
 from functions.currency_converter import convert_to_sek
 from functions.data_fetcher import fetch_fuel_data
+from functions.graf_minmax import visa_graf_minmax
 from functions.match_dag_pris import matchDagOchPrisDiesel, matchDagOchPrisE95
 from functions.min_max_pris import *
 
