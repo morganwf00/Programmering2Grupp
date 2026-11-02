@@ -32,13 +32,13 @@ def minMaxPris():
 @app.route("/priceDifferance")
 def priceDiff():
     data = fetch_fuel_data()
-    
+
     if data is None:
         return render_template(
             "fel.html",
             fel="Vi kunde inte hämta bränslepriser just nu. Vänligen försök igen senare.",
         ), 503
-    
+
     fig = dfDiff(data)
     return render_template("priceDiff.html", graph=fig.to_html(full_html=False))
 
