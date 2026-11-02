@@ -12,11 +12,15 @@
     </p>
 
     <!-- Tre kort med olika funktioner -->
-    <div class="row">
+    <div class="row g-4">
 
         <!-- Bensinpriser -->
-        <div class="col-md-4 mb-3">
+        <div class="col-12 col-md-6 col-lg-4">
             <div class="card h-100">
+                <img src="{{ url_for('static', filename='images/prisförändring.png') }}"
+                     class="card-img-top"
+                     alt="Bensinprisets utveckling">
+
                 <div class="card-body">
                     <h5 class="card-title">Bensin prisförändring</h5>
                     <p class="card-text">
@@ -29,8 +33,12 @@
         </div>
 
         <!-- Jämförelse av bensin och diesel -->
-        <div class="col-md-4 mb-3">
+        <div class="col-12 col-md-6 col-lg-4">
             <div class="card h-100">
+                 <img src="{{ url_for('static', filename='images/jämförelse.png') }}"
+                     class="card-img-top"
+                     alt="Jämförelse mellan bensin och diesel">
+
                 <div class="card-body">
                     <h5 class="card-title">Bensin mot Diesel</h5>
                     <p class="card-text">
@@ -43,8 +51,12 @@
         </div>
 
         <!-- Högsta och lägsta priser -->
-        <div class="col-md-4 mb-3">
+        <div class="col-12 col-md-6 col-lg-4">
             <div class="card h-100">
+                <img src="{{ url_for('static', filename='images/minmax.png') }}"
+                     class="card-img-top"
+                     alt="Högsta och lägsta bränslepriser">
+
                 <div class="card-body">
                     <h5 class="card-title">Högsta och lägsta pris</h5>
                     <p class="card-text">
@@ -60,3 +72,4 @@
 </div>
 
 {% endblock %}
+
