@@ -25,6 +25,7 @@ def index():
     return render_template("index.html")
 
 
+# minsta och maxpriset på diesel och e95
 @app.route("/minmax")
 def minMaxPris():
     data_diesel = matchDagOchPrisDiesel()
