@@ -11,7 +11,7 @@ from functions.currency_converter import convert_to_sek
 from functions.data_fetcher import fetch_fuel_data
 
 # Hämtar funktionen som gämför de senaste två månader
-from functions.e95Differance import dfDiff
+from functions.e95differance import dfDiff
 
 # Skapar Flask-appen
 app = Flask(__name__)
