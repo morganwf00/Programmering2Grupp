@@ -9,6 +9,11 @@ from functions.analys import analys_pris_skillnaden
 # Hämtar funktionen som räknar om euro till kronor
 from functions.currency_converter import convert_to_sek
 from functions.data_fetcher import fetch_fuel_data
+from functions.graf_minmax import visa_graf_minmax
+from functions.match_dag_pris import matchDagOchPrisDiesel, matchDagOchPrisE95
+from functions.min_max_pris import *
+
+# Hämtar funktionen som hämtar priset från API
 
 # Hämtar funktionen som gämför de senaste två månader
 from functions.e95differance import dfDiff
@@ -23,10 +28,27 @@ def index():
     return render_template("index.html")
 
 
-
+# minsta och maxpriset på diesel och e95
 @app.route("/minmax")
 def minMaxPris():
-    return render_template("minMax.html")
+    data_diesel = matchDagOchPrisDiesel()
+    data_e95 = matchDagOchPrisE95()
+    max_pris_diesel = hitta_max_diesel(data_diesel)
+    min_pris_diesel = hitta_min_diesel(data_diesel)
+    max_pris_e95 = hitta_max_e95(data_e95)
+    min_pris_e95 = hitta_min_e95(data_e95)
+    graf = visa_graf_minmax(
+        min_pris_e95, max_pris_e95, min_pris_diesel, max_pris_diesel
+    )
+    return render_template(
+        "minMax.html",
+        graf=graf,
+        min_diesel=min_pris_diesel,
+        min_e95=min_pris_e95,
+        max_diesel=max_pris_diesel,
+        max_e95=max_pris_e95,
+    )
+
 
 
 # Sidan som gämför denna månadens veckopris emot förra

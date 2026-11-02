@@ -1,4 +1,4 @@
-from functions.match_dag_pris_e95 import matchDagOchPrisDiesel, matchDagOchPrisE95
+from functions.match_dag_pris import matchDagOchPrisDiesel, matchDagOchPrisE95
 
 
 # testar om pris och dag för diesel och e95 matchas,

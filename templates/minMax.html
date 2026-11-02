@@ -1,4 +1,21 @@
-{%extends "index.html" %}
+{%extends "base.html" %}
 {%block content%}
-<h1>Yeah Buddy, den funkar</h1>
+<div class="min-ww-100 d-flex justify-content-center align-items-center">
+    <div>
+        {{ graf | safe }}
+    </div>
+</div>
+<div class="mt-3 min-ww-100 d-flex justify-content-center">
+    <ul class="list-unstyled text-center">
+        <li>Minsta priset diesel: <span class="text-primary">{{min_diesel}}</span></li>
+        <br>
+        <li>Minsta priset e95: <span class="text-primary">{{min_e95}}</span></li>
+        <br>
+        <li>Max priset diesel: <span class="text-danger">{{max_diesel}}</span></li>
+        <br>
+        <li>Max priset e95: <span class="text-danger">{{max_e95}}</span></li>
+        <br>
+    </ul>
+</div>
+
 {%endblock%}
