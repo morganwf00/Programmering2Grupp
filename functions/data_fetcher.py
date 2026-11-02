@@ -1,7 +1,12 @@
+from functools import lru_cache
+
 import requests
 
 API_URL = "https://www.fuel-prices.eu/lang/api/country-history.php?cc=SE"
 
+
+# Sparar API svar i cache för att undvika onödiga API anrop
+@lru_cache(maxsize=32)
 
 # Hämtar JSON data från API endpoint
 def fetch_fuel_data():

@@ -20,4 +20,3 @@ def test_hamtaAPI3():
     diesel = data["diesel"]
 
     assert diesel[0] == 1.943
-
