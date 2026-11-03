@@ -9,14 +9,13 @@ from functions.analys import analys_pris_skillnaden
 # Hämtar funktionen som räknar om euro till kronor
 from functions.currency_converter import convert_to_sek
 from functions.data_fetcher import fetch_fuel_data
+
+# Hämtar funktionen som hämtar priset från API
+# Hämtar funktionen som gämför de senaste två månader
+from functions.e95differance import dfDiff
 from functions.graf_minmax import visa_graf_minmax
 from functions.match_dag_pris import matchDagOchPrisDiesel, matchDagOchPrisE95
 from functions.min_max_pris import *
-
-# Hämtar funktionen som hämtar priset från API
-
-# Hämtar funktionen som gämför de senaste två månader
-from functions.e95differance import dfDiff
 
 # Skapar Flask-appen
 app = Flask(__name__)
