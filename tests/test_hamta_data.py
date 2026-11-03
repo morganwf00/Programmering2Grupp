@@ -3,8 +3,8 @@ from unittest.mock import Mock, patch
 import pytest
 
 from app import app
-from functions.match_dag_pris import matchDagOchPrisDiesel, matchDagOchPrisE95
 from functions.analys import analys_pris_skillnaden
+from functions.match_dag_pris import matchDagOchPrisDiesel, matchDagOchPrisE95
 
 DATA = {
     "cc": "SE",
@@ -39,28 +39,32 @@ DATA = {
         "note": "Weekly figures from the European Commission Weekly Oil Bulletin (CC BY 4.0). Show the text, linked to https://www.fuel-prices.eu/, next to the data.",
     },
 }
-#------------------------------------------------------------------------------------------------
-#pytest decorator förbereder test miljön.
+
+
+# ------------------------------------------------------------------------------------------------
+# pytest decorator förbereder test miljön.
 # klient förbereds för att simulera av en  HTTP request#
 @pytest.fixture
 def klient():
-    app.config["TESTING"] = True #aplikationen körs i test mode
+    app.config["TESTING"] = True  # aplikationen körs i test mode
     return app.test_client()
 
-#ersätter en riktig API-request, kommer från unitest.mock
-#mock_get ges av @patch och klient ges av @pytest.fixture
+
+# ersätter en riktig API-request, kommer från unitest.mock
+# mock_get ges av @patch och klient ges av @pytest.fixture
 @patch("functions.data_fetcher.requests.get")
 def test_data(mock_get, klient):
-    #fake python object som simulerar requests.get(). 
+    # fake python object som simulerar requests.get().
     # Motsvarar response = requests.get(API_URL)
     # return response.json()
     mock_get.return_value = Mock(json=lambda: DATA)
     svar = klient.get("/minmax")
-    assert svar.status_code == 200 #checkar success
+    assert svar.status_code == 200  # checkar success
     assert "1.804" in svar.get_data(as_text=True)
     assert "2021-11-01" in mock_get.return_value.json()["labels"]
 
-#------------------------------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------------------------------
 # testar om pris och dag för diesel och e95 matchas,
 # det första index av listan från funktionen ska vara en dictionary
 # med datum och pris, checkar om båda stämmer
@@ -79,7 +83,8 @@ def test_pris_diesel(mock_get):
     assert data[0]["pris"] == 1.943
     assert data[0]["dag"] == "2021-11-01"
 
-#------------------------------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------------------------------
 def test_analys():
     data = {
         "labels": ["2021-10-25"],
