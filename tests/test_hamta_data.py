@@ -41,13 +41,15 @@ DATA = {
     },
 }
 
-#Fixture som rensar cache och används automatisk för varje test
-#Yield låter testen börja
+
+# Fixture som rensar cache och används automatisk för varje test
+# Yield låter testen börja
 @pytest.fixture(autouse=True)
 def clear_cache():
     fetch_fuel_data.cache_clear()
     yield
     fetch_fuel_data.cache_clear()
+
 
 # ------------------------------------------------------------------------------------------------
 # pytest decorator förbereder test miljön.
