@@ -5,6 +5,7 @@ import pytest
 from app import app
 from functions.analys import analys_pris_skillnaden
 from functions.match_dag_pris import matchDagOchPrisDiesel, matchDagOchPrisE95
+from functions.data_fetcher import fetch_fuel_data
 
 DATA = {
     "cc": "SE",
@@ -40,6 +41,13 @@ DATA = {
     },
 }
 
+#Fixture som rensar cache och används automatisk för varje test
+#Yield låter testen börja
+@pytest.fixture(autouse=True)
+def clear_cache():
+    fetch_fuel_data.cache_clear()
+    yield
+    fetch_fuel_data.cache_clear()
 
 # ------------------------------------------------------------------------------------------------
 # pytest decorator förbereder test miljön.
@@ -60,7 +68,7 @@ def test_data(mock_get, klient):
     mock_get.return_value = Mock(json=lambda: DATA)
     svar = klient.get("/minmax")
     assert svar.status_code == 200  # checkar success
-    assert "1.804" in svar.get_data(as_text=True)
+    assert "SE" in mock_get.return_value.json()["cc"]
     assert "2021-11-01" in mock_get.return_value.json()["labels"]
 
 

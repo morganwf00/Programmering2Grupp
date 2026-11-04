@@ -17,5 +17,4 @@ def test_hamtaAPI2():
 def test_hamtaAPI3():
     data = fetch_fuel_data()
     diesel = data["diesel"]
-
     assert diesel[0] == 1.908
