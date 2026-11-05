@@ -4,8 +4,8 @@ import pytest
 
 from app import app
 from functions.analys import analys_pris_skillnaden
-from functions.match_dag_pris import matchDagOchPrisDiesel, matchDagOchPrisE95
 from functions.data_fetcher import fetch_fuel_data
+from functions.match_dag_pris import matchDagOchPrisDiesel, matchDagOchPrisE95
 
 DATA = {
     "cc": "SE",
